@@ -1,3 +1,6 @@
+# loaders
+# realiza lo que se investigó en data_exploratory.ipynb
+
 from sqlalchemy import create_engine
 from cfg import DB_CONNSTR
 import pandas as pd
@@ -31,11 +34,19 @@ class SizeByCategoryLoader(BaseLoader):
     table_name = CATEGORY_COUNT_TABLE_NAME
     
     def load_table(self, file_path):
+        df = pd.read_csv(file_path)
+        dff = df.groupby(["categoria"], as_index=False).size()
+        return super().load_table(dff)
+
+class SizeBySourceLoader(BaseLoader):
+    table_name = SOURCE_SIZE_TABLE_NAME
+    
+    def load_table(self, file_paths):
         lst = list()
         for name, file_path in file_paths.items():
             df = pd.read_csv(file_path)
             lst.append({"source": name, "count": df.size})
-        
+
         df_source_size = pd.DataFrame(lst)
         return super().load_table(df_source_size)
 

@@ -17,7 +17,7 @@ def create_tables():
             with open(SQL_DIR / f"{file}.sql") as f:
                 query = text(f.read())
                 
-            con.execute(f"DROP TAABLE IF EXISTS {file}")
+            con.execute(f"DROP TABLE IF EXISTS {file}")
             con.execute(query)
             
             

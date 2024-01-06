@@ -25,9 +25,12 @@ class CineInsightsLoader(BaseLoader):
     def load_table(self, file_path):
         df = pd.read_csv(file_path)
         
-        insights_df = df.groupby("Provincia", as_index=False).count()[
-            ["Provincia","Pantallas","Butacas","espacio_INCAA"]
-        ]
+        df_pantalla_butaca = df.groupby('provincia', as_index=False).sum()[['provincia','pantallas','butacas']]
+        df_incaa = df[df['espacio_incaa'] == 'Si'].groupby('provincia', as_index=False).count()[['provincia', 'espacio_incaa']]
+        insights_df = pd.merge(df_pantalla_butaca, df_incaa, on='provincia', how='right').fillna(0)
+        #insights_df = df.groupby("Provincia", as_index=False).count()[
+        #    ["Provincia","Pantallas","Butacas","espacio_INCAA"]
+        #]
         return super().load_table(insights_df)
 
 class SizeByCategoryLoader(BaseLoader):

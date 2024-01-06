@@ -1,16 +1,16 @@
 import click
-from extractors import MuseoExtractor, UrlExtractor
+from extractors import BibliotecaExtractor, MuseoExtractor, CineExtractor
 import pandas as pd
 from constants import BASE_FILE_DIR
 from cfg import (
     museo_ds,
-    cines_ds,
-    espacios_ds
+    cine_ds,
+    biblioteca_ds
 )
 from loaders import (
-    CinesInsightsLoader,
-    SizeCategoryLoader,
-    SizeSourceLoader,
+    CineInsightsLoader,
+    SizeByCategoryLoader,
+    SizeBySourceLoader,
     SizeCatProvLoader
 )
 import logging
@@ -19,8 +19,8 @@ import logging
 log = logging.getLogger()
 extractors_dict = {
     "museo": MuseoExtractor(museo_ds["name"], museo_ds["url"]),
-    "cines": UrlExtractor(cines_ds["name"], espacios_ds["url"]),
-    "espacios": UrlExtractor(espacios_ds["name"], espacios_ds["url"]) 
+    "cines": CineExtractor(cine_ds["name"], cine_ds["url"]),
+    "espacios": BibliotecaExtractor(biblioteca_ds["name"], biblioteca_ds["url"]) 
 }
 
 
@@ -72,8 +72,8 @@ def run_pipeline(date: str) -> None:
     # Load
     log.info("Loading")
     CineInsightsLoader().load_table(file_paths["cines"])
-    SizeCategoryLoader().load_table(merge_path)
-    SizeSourceLoader().load_table(file_paths)
+    SizeByCategoryLoader().load_table(merge_path)
+    SizeBySourceLoader().load_table(file_paths)
     SizeCatProvLoader().load_table(merge_path)
     log.info("Done")
 

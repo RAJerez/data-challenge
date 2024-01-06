@@ -9,7 +9,7 @@ import pandas as pd
 log = logging.getLogger()
 
 
-class UrlExtractor:
+class BibliotecaExtractor:
     file_path_crib = (
         "{category}/{year}-{month:02d}/{category}-{day:02d}-{month:02d}-{year}.csv"
     )
@@ -45,7 +45,7 @@ class UrlExtractor:
         return m_path
     
     def transform(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Transfor raw data and returns it on a pd.Dataframe
+        """Transform raw data and returns it on a pd.Dataframe
         
         Args:
             df (pd.DataFrame): DataFrame to transform
@@ -54,19 +54,8 @@ class UrlExtractor:
             pd.Dataframe: Transformed df
         """
         renamed_cols = {
-            'Cod_Loc' : 'cod_localidad',
-            'IdProvincia' : 'id_provincia',
-            'IdDepartamento' : 'id_departamento',
-            'Provincia' : 'provincia',
-            'Categoría' : 'categoria',
-            'Dirección' : 'domicilio',
-            'CP' : 'codigo postal',
-            'Localidad' : 'localidad',
-            'Nombre' : 'nombre',
-            'Domicilio' : 'domicilio',
-            'Teléfono' : 'numero de telefono',
-            'Mail' : 'mail',
-            'Web' : 'web'
+            'cp' : 'codigo postal',
+            'telefono' : 'numero de telefono'
         }
         df = df.rename(columns=renamed_cols)
         
@@ -87,7 +76,7 @@ class UrlExtractor:
         return df[column_list]
 
 
-class MuseoExtractor(UrlExtractor):
+class MuseoExtractor(BibliotecaExtractor):
     def transform(self, df: DataFrame) -> pd.DataFrame:
         """Transform raw data and returns it on a pd.DataFrame
         
@@ -122,6 +111,38 @@ class MuseoExtractor(UrlExtractor):
             'codigo postal',
             'numero de telefono',
             'mail',
+            'web'
+        ]
+        return df[column_list]
+    
+
+class CineExtractor(BibliotecaExtractor):
+    def transform(self, df: DataFrame) -> pd.DataFrame:
+        """Transform raw data and returns it on a pd.DataFrame
+        
+        Args:
+            df (pd.DataFrame): DataFrame to transform
+            
+        Returns:
+            pd.DataFrame: Transformed df
+        """
+        renamed_cols = {
+            'direccion' : 'domicilio',
+            'cp' : 'codigo postal'
+        }
+        
+        df = df.rename(columns = renamed_cols)
+
+        column_list = [
+            'cod_localidad',
+            'id_provincia',
+            'id_departamento',
+            'categoria',
+            'provincia',
+            'localidad',
+            'nombre',
+            'domicilio',
+            'codigo postal',
             'web'
         ]
         return df[column_list]

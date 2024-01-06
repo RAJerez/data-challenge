@@ -1,3 +1,5 @@
-poetry.lock
 postgres-db/
+prueba.py
+prueba.ipynb
+poetry.lock
 README_challenge.md

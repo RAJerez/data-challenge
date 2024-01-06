@@ -6,6 +6,6 @@ CREATE TABLE cine_insights
     pantallas integer,
     butacas integer,
     espacios_incaa integer,
-    job_date date,
+    --job_date date,
     PRIMARY KEY (id_cine_insights)
 );

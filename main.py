@@ -19,8 +19,8 @@ import logging
 log = logging.getLogger()
 extractors_dict = {
     "museo": MuseoExtractor(museo_ds["name"], museo_ds["url"]),
-    "cines": CineExtractor(cine_ds["name"], cine_ds["url"]),
-    "espacios": BibliotecaExtractor(biblioteca_ds["name"], biblioteca_ds["url"]) 
+    "cine": CineExtractor(cine_ds["name"], cine_ds["url"]),
+    "biblioteca": BibliotecaExtractor(biblioteca_ds["name"], biblioteca_ds["url"]) 
 }
 
 

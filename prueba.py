@@ -1,9 +1,12 @@
-from pathlib import Path
+from decouple import AutoConfig
+from constants import SETTINGS_DIR
 
-BASE_FILE_DIR = Path("/tmp")
-ROOT_DIR = Path().resolve().parent
-SQL_DIR = ROOT_DIR / "data-challenge/sql"
+config = AutoConfig(search_path=SETTINGS_DIR)
 
-print(f'BASE_FILE_DIR = {BASE_FILE_DIR}')
-print(f'ROOT_DIR = {ROOT_DIR}')
-print(f'SQL_DIR = {SQL_DIR}')
+# Levanto las variables desde settings.ini
+DB_CONNSTR = config("DB_CONNSTR")
+MUSEO_URL = config("MUSEO_URL")
+CINE_URL = config("CINE_URL")
+BIBLIOTECA_URL = config("BIBLIOTECA_URL")
+
+print(DB_CONNSTR)

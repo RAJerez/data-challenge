@@ -3,6 +3,7 @@ from pathlib import Path
 BASE_FILE_DIR = Path("/tmp") # donde almaceno los archivos
 ROOT_DIR = Path().resolve().parent # ruta padre donde se encuentra mi proyecto
 SQL_DIR = ROOT_DIR / "data-challenge/sql" # ruta donde estan mis archivos sql
+SETTINGS_DIR = ROOT_DIR / "data-challenge"
 
 # Nombres de tablas
 RAW_TABLE_NAME = "raw"

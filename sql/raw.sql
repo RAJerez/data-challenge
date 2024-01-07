@@ -1,5 +1,4 @@
 CREATE TABLE IF NOT EXISTS raw(
-    job_date date PRIMARY KEY,
     cod_localidad INTEGER NOT NULL,
     id_provicia INTEGER NOT NULL,
     id_departamento INTEGER NOT NULL,
@@ -9,7 +8,7 @@ CREATE TABLE IF NOT EXISTS raw(
     nombre VARCHAR(255) NOT NULL,
     domicilio VARCHAR(255) NOT NULL,
     codigo VARCHAR(255) NOT NULL,
-    numero VARCHAR(255) NOT NULL,
+    numero_telefono VARCHAR(255) NOT NULL,
     mail VARCHAR(255) NOT NULL,
     web VARCHAR(255) NOT NULL
 );

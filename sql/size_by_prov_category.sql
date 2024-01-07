@@ -5,6 +5,5 @@ CREATE TABLE size_by_prov_category
     provincia VARCHAR(120),
     categoria VARCHAR(120),
     count integer,
-    --job_date date,
     PRIMARY KEY (id_size_by_prov_category)
 );

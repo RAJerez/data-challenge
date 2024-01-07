@@ -71,9 +71,9 @@ def run_pipeline(date: str) -> None:
     
     # Load
     log.info("Loading")
-    CineInsightsLoader().load_table(file_paths["cines"])
+    CineInsightsLoader().load_table(file_paths["cine"])
     SizeByCategoryLoader().load_table(merge_path)
-    SizeBySourceLoader().load_table(file_paths)
+    SizeBySourceLoader().load_table(file_paths) # no se realiza
     SizeCatProvLoader().load_table(merge_path)
     log.info("Done")
 

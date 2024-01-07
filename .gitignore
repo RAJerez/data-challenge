@@ -1,6 +1,4 @@
 postgres-db/
 __pycache__/
-prueba.py
-prueba.ipynb
 poetry.lock
-README_challenge.md
+images/

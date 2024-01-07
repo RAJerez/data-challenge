@@ -1,6 +1,6 @@
 import sqlalchemy as sa
-from sqlalchemy import create_engine
-from sqlalchemy import text
+from sqlalchemy import create_engine 
+from sqlalchemy.sql import text
 from constants import SQL_DIR, TABLE_NAMES
 from cfg import DB_CONNSTR
 import logging
@@ -21,8 +21,10 @@ def create_tables():
                 with open(SQL_DIR / f"{file}.sql") as f:
                     query = text(f.read())
                     log.debug(f"Query for {file}: {query}")
-                    
+                
+                #con.execute(f"DROP TABLE IF EXISTS {file}")    
                 con.execute(query)
+                con.commit()
         print("Tablas creadas exitosamente.")
     
     except sa.exc.SQLAlchemyError as e:

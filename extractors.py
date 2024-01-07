@@ -55,7 +55,7 @@ class BibliotecaExtractor:
         """
         renamed_cols = {
             'cp' : 'codigo postal',
-            'telefono' : 'numero de telefono'
+            'telefono' : 'numero_telefono'
         }
         df = df.rename(columns=renamed_cols)
         
@@ -69,7 +69,7 @@ class BibliotecaExtractor:
             'nombre',
             'domicilio',
             'codigo postal',
-            'numero de telefono',
+            'numero_telefono',
             'mail',
             'web'
         ]
@@ -92,7 +92,7 @@ class MuseoExtractor(BibliotecaExtractor):
             'IdDepartamento' : 'id_departamento',
             'direccion' : 'domicilio',
             'CP' : 'codigo postal',
-            'telefono' : 'numero de telefono',
+            'telefono' : 'numero_telefono',
             'Mail' : 'mail',
             'Web' : 'web'
         }
@@ -109,7 +109,7 @@ class MuseoExtractor(BibliotecaExtractor):
             'nombre',
             'domicilio',
             'codigo postal',
-            'numero de telefono',
+            'numero_telefono',
             'mail',
             'web'
         ]
@@ -126,6 +126,9 @@ class CineExtractor(BibliotecaExtractor):
         Returns:
             pd.DataFrame: Transformed df
         """
+        df['numero_telefono'] = pd.NA
+        df['mail'] = pd.NA
+        
         renamed_cols = {
             'direccion' : 'domicilio',
             'cp' : 'codigo postal'
@@ -143,6 +146,8 @@ class CineExtractor(BibliotecaExtractor):
             'nombre',
             'domicilio',
             'codigo postal',
+            'numero_telefono',
+            'mail',
             'web'
         ]
         return df[column_list]

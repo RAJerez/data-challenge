@@ -8,6 +8,7 @@ from cfg import (
     biblioteca_ds
 )
 from loaders import (
+    RawLoader,
     CineInsightsLoader,
     SizeByCategoryLoader,
     SizeBySourceLoader,
@@ -71,6 +72,7 @@ def run_pipeline(date: str) -> None:
     
     # Load
     log.info("Loading")
+    RawLoader().load_table(merge_path)
     CineInsightsLoader().load_table(file_paths["cine"])
     SizeByCategoryLoader().load_table(merge_path)
     SizeBySourceLoader().load_table(file_paths) # no se realiza

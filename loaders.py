@@ -5,6 +5,7 @@ from sqlalchemy import create_engine
 from cfg import DB_CONNSTR
 import pandas as pd
 from constants import (
+    RAW_TABLE_NAME,
     CINE_INSIGHTS_TABLE_NAME,
     CATEGORY_COUNT_TABLE_NAME,
     SOURCE_SIZE_TABLE_NAME,
@@ -18,6 +19,15 @@ engine = create_engine(DB_CONNSTR)
 class BaseLoader:
     def load_table(self, df):
         df.to_sql(self.table_name, con=engine, index=False, if_exists="replace")
+        
+        
+class RawLoader(BaseLoader):
+    table_name = RAW_TABLE_NAME
+    
+    def load_table(self, file_path):
+        df_raw = pd.read_csv(file_path)
+        return super().load_table(df_raw)
+        
     
 class CineInsightsLoader(BaseLoader):
     table_name = CINE_INSIGHTS_TABLE_NAME

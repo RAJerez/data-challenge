@@ -36,19 +36,19 @@ información:
 
 
 ## Herramientas utilizadas:
-Python==3.10
-Poetry==1.7.1
-Postgres==14
-Docker24.0.7
+- Python==3.10
+- Poetry==1.7.1
+- Postgres==14
+- Docker24.0.7
 
 ## Librerias Utilizadas
-pandas==2.1.4
-sqlalchemy==2.0.25
-psycopg2-binary==2.9.9
-click==8.1.7
-python-decouple==3.8
-requests==2.31.0
-ipykernel==6.28.0
+- pandas==2.1.4
+- sqlalchemy==2.0.25
+- psycopg2-binary==2.9.9
+- click==8.1.7
+- python-decouple==3.8
+- requests==2.31.0
+- ipykernel==6.28.0
 
 
 ## Prerequisitos para poder correr el proyecto

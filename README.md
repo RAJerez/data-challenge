@@ -1,14 +1,14 @@
 # Data Challenge
-He realizado la resolucion de un reto de Alkemy en el que se debe crear un proyecto que consuma datos desde
-3 fuentes distintas para popular una base de datos SQL con información cultural
-sobre bibliotecas, museos y salas de cines argentinos.
+I have solved an Alkemy challenge in which a project must be created that consumes data from
+3 different sources to create a SQL database with cultural information
+about Argentine libraries, museums and movie theaters.
 
-## Extracción:
-- Se realiza la extracción de los datos y se organizan en rutas siguiendo la siguiente estructura: “categoría\año-mes\categoria-dia-mes-año.csv”.
+## Extraction:
+- The data is extracted and organized into routes following the following structure: “category\year-month\category-day-month-year.csv”.
 
-## Procesamiento de datos:
-- Se normaliza toda la información de Museos, Salas de Cine y Bibliotecas
-Populares, para crear una única tabla que contenga:
+## Data processing:
+- All information from Museums, Movie Theaters and Libraries is normalized
+Popular, to create a single table containing:
     - cod_localidad
     - id_provincia
     - id_departamento
@@ -22,26 +22,26 @@ Populares, para crear una única tabla que contenga:
     - mail
     - web
 
-- Se procesa los datos conjuntos para poder generar una tabla con la siguiente
-información:
+- The joint data is processed to be able to generate a table with the following
+information:
     - Cantidad de registros totales por categoría
     - Cantidad de registros totales por fuente
     - Cantidad de registros por provincia y categoría
 
-- Se procesa la información de cines para poder crear una tabla que contenga:
+- The cinema information is processed to create a table that contains:
     - Provincia
     - Cantidad de pantallas
     - Cantidad de butacas
     - Cantidad de espacios INCAA
 
 
-## Herramientas utilizadas:
+## Used tools:
 - Python==3.10
 - Poetry==1.7.1
-- Postgres==14
-- Docker24.0.7
+- Postgres==13
+- Docker==24.0.7
 
-## Librerias Utilizadas
+## Libraries used:
 - pandas==2.1.4
 - sqlalchemy==2.0.25
 - psycopg2-binary==2.9.9
@@ -49,28 +49,28 @@ información:
 - python-decouple==3.8
 - requests==2.31.0
 - ipykernel==6.28.0
+- black==24.1.1
 
 
-## Prerequisitos para poder correr el proyecto
+## Prerequisites to run the project
 #### Poetry
-Utilizé Poetry para un mejor manejo de dependecias y también para crear mi entorno virtual.
-
-Instalar poetry desde pipx y la instalación se realizara aislada del entorno global
+Use Poetry for better dependency management and also to create my virtual environment.
+Install poetry from pipx and the installation will be carried out isolated from the global environment
     
-    pipx install poetry
+    pipx install poetry==1.7.1
 
-Para instalar las dependencias necesarias descriptas en pyproyect.toml
+To install the necessary dependencies described in pyproject.toml
 
     poetry install
 
-Automaticamente se creara un entorno virtual al cual puede acceder
+A virtual environment will automatically be created that you can access
 
     poetry shell
 
 
-#### Opción sin Poetry
-En caso de no usar poetry puede instalar las dependencias a traves de requirements.txt
-El proyecto se realizó con Python 3.10
+#### Option with venv
+If you do not use poetry you can install the dependencies through requirements.txt
+The project was carried out with Python 3.10
 
     python3 -m virtualenv venv
 
@@ -80,29 +80,29 @@ El proyecto se realizó con Python 3.10
 
 
 ## Data Research
-Se realiza un pre-análisis del datasource para saber como se encuentran conformados los datos y el tipo de transformaciones que se deberia realizar.
-Puede verlo en el archivo de jupyter-notebook 'data_exploratory.ipynb'
+A pre-analysis of the datasource is carried out to know how the data is formed and the type of transformations that should be carried out.
+You can see it in the jupyter-notebook file 'data_exploratory.ipynb'
 
-## Creación de base de datos, tablas y ejecución de pipeline
-Levanto contenedor con Base de datos Postgres:
+## Creation of database, tables and pipeline execution
+I build a container with Postgres Database:
 
     sudo docker compose up -d
 
-Puede acceder a la base de datos desde bash:
+You can access the database from bash:
 
     docker exec -it postgres psql -U postgres -d data-challenge
 
-Crear de tablas en base de datos
-El siguiente script realiza la conexión con la base de datos y ejecuta los script.sql almacenados en la carpeta data-challenge/sql.
+Create tables in database
+The following script connects to the database and executes the script.sql stored in the data-challenge/sql folder.
 
     python3 script.py
 
-En la siguiente imagen se puede visualizar la creacion de las tablas necesarias:
+In the following image you can see the creation of the necessary tables:
 ![Tablas_creadas](./images/tablas_creadas.png)
 
-Ejecutar pipeline:
+Run pipeline:
 
     python data-challenge/main.py --date YYYY-MM-DD
 
-En la siguiente imagen se realizan consultas en la base de datos verificando que la transformacion y la carga se haya realizado correctamente:
+In the following image, queries are made in the database verifying that the transformation and loading have been carried out correctly:
 ![Verificacion](./images/verificacion.png)
